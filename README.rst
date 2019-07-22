@@ -86,7 +86,7 @@ a minimum of 2 CPUs and 6GB of memory works well.
         export OPENEDX_RELEASE=ironwood.master
         export DEVSTACK_WORKSPACE=<devstack-folder-directory>
 
-3. Create development environment with Conda.
+2. Create development environment with Conda.
 
     .. code:: sh
 
@@ -94,13 +94,13 @@ a minimum of 2 CPUs and 6GB of memory works well.
         conda activate edx
 
 
-1. Install the requirements inside of a `Python virtualenv`_.
+3. Install the requirements inside of a `Python virtualenv`_.
 
    .. code:: sh
 
        make requirements
 
-2. The Docker Compose file mounts a host volume for each service's executing
+4. The Docker Compose file mounts a host volume for each service's executing
    code. The host directory defaults to be a sibling of this directory. For
    example, if this repo is cloned to ``~/workspace/devstack``, host volumes
    will be expected in ``~/workspace/course-discovery``,
@@ -117,20 +117,19 @@ a minimum of 2 CPUs and 6GB of memory works well.
    Be sure to share the cloned directories in the Docker -> Preferences... ->
    File Sharing box.
 
-2. Checkout to this stable version.
+5. Checkout to this stable version.
 
     .. code:: sh
 
-        make dev.clone
         make dev.checkout
 
-3. Pull any changes made to the various images on which the devstack depends.
+6. Pull any changes made to the various images on which the devstack depends.
 
    .. code:: sh
 
        make pull
 
-4. Run the provision command, if you haven't already, to configure the various
+7. Run the provision command, if you haven't already, to configure the various
    services with superusers (for development without the auth service) and
    tenants (for multi-tenancy).
 
@@ -154,7 +153,7 @@ a minimum of 2 CPUs and 6GB of memory works well.
        make dev.sync.provision
 
 
-5. Start the services and the watchers. This command will mount the repositories under the
+8. Start the services and the watchers. This command will mount the repositories under the
    DEVSTACK\_WORKSPACE directory.
 
    **NOTE:** it may take up to 60 seconds for the LMS to start, even after the ``make dev.up`` command outputs ``done``.
