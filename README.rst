@@ -83,15 +83,15 @@ a minimum of 2 CPUs and 6GB of memory works well.
 
     .. code:: sh
 
-        export OPENEDX_RELEASE=ironwood.master
-        export DEVSTACK_WORKSPACE=<devstack-folder-directory>
+       export OPENEDX_RELEASE=ironwood.master
+       export DEVSTACK_WORKSPACE=<devstack-folder-directory>
 
 2. Create development environment with Conda.
 
     .. code:: sh
 
-        conda create -n edx python=3
-        conda activate edx
+       conda create -n edx python=3
+       conda activate edx
 
 
 3. Install the requirements inside of a `Python virtualenv`_.
@@ -121,7 +121,7 @@ a minimum of 2 CPUs and 6GB of memory works well.
 
     .. code:: sh
 
-        make dev.checkout
+       make dev.checkout
 
 6. Pull any changes made to the various images on which the devstack depends.
 
