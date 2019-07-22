@@ -31,6 +31,9 @@ docker-compose exec lms bash -c 'source /edx/app/edxapp/edxapp_env && python /ed
 # Enable the LMS-E-Commerce integration
 docker-compose exec lms bash -c 'source /edx/app/edxapp/edxapp_env && python /edx/app/edxapp/edx-platform/manage.py lms --settings=devstack_docker configure_commerce'
 
+# Force to use port 80 in update expired apt keys
+docker-compose exec lms bash -c 'sed -e "s|COMMON_EDX_PPA_KEY_SERVER: \"keyserver.ubuntu.com\"|COMMON_EDX_PPA_KEY_SERVER: \"hkp://keyserver.ubuntu.com:80\"|" /edx/app/edx_ansible/edx_ansible/playbooks/roles/common_vars/defaults/main.yml'
+
 # Create demo course and users
 docker-compose exec lms bash -c '/edx/app/edx_ansible/venvs/edx_ansible/bin/ansible-playbook /edx/app/edx_ansible/edx_ansible/playbooks/demo.yml -v -c local -i "127.0.0.1," --extra-vars="COMMON_EDXAPP_SETTINGS=devstack_docker"'
 

@@ -79,6 +79,21 @@ you should configure Docker with a sufficient
 amount of resources. We find that `configuring Docker for Mac`_ with
 a minimum of 2 CPUs and 6GB of memory works well.
 
+1. Set the environment variables.
+
+    .. code:: sh
+
+        export OPENEDX_RELEASE=ironwood.master
+        export DEVSTACK_WORKSPACE=<devstack-folder-directory>
+
+3. Create development environment with Conda.
+
+    .. code:: sh
+
+        conda create -n edx python=3
+        conda activate edx
+
+
 1. Install the requirements inside of a `Python virtualenv`_.
 
    .. code:: sh
@@ -102,6 +117,13 @@ a minimum of 2 CPUs and 6GB of memory works well.
    Be sure to share the cloned directories in the Docker -> Preferences... ->
    File Sharing box.
 
+2. Checkout to this stable version.
+
+    .. code:: sh
+
+        make dev.clone
+        make dev.checkout
+
 3. Pull any changes made to the various images on which the devstack depends.
 
    .. code:: sh
@@ -123,7 +145,7 @@ a minimum of 2 CPUs and 6GB of memory works well.
 
    .. code:: sh
 
-       make dev.provision
+       make dev.provision.run
 
    Provision using `docker-sync`_:
 
@@ -132,7 +154,7 @@ a minimum of 2 CPUs and 6GB of memory works well.
        make dev.sync.provision
 
 
-5. Start the services. This command will mount the repositories under the
+5. Start the services and the watchers. This command will mount the repositories under the
    DEVSTACK\_WORKSPACE directory.
 
    **NOTE:** it may take up to 60 seconds for the LMS to start, even after the ``make dev.up`` command outputs ``done``.
@@ -141,7 +163,7 @@ a minimum of 2 CPUs and 6GB of memory works well.
 
    .. code:: sh
 
-       make dev.up
+       make dev.up.all
 
    Start using `docker-sync`_:
 
