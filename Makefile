@@ -7,8 +7,6 @@
 .DEFAULT_GOAL := help
 .PHONY: requirements
 
-DEVSTACK_WORKSPACE ?= $(shell pwd)/..
-
 OS := $(shell uname)
 
 # Need to run some things under winpty in a Windows git-bash shell
@@ -28,7 +26,8 @@ endif
 
 COMPOSE_PROJECT_NAME=devstack
 
-export DEVSTACK_WORKSPACE
+export DEVSTACK_WORKSPACE=$(shell pwd)/..
+# export OPENEDX_RELEASE=ironwood.master # It can be changed to another stable version
 export COMPOSE_PROJECT_NAME
 
 include *.mk
@@ -216,6 +215,9 @@ xqueue_consumer-restart: ## Kill the XQueue development server. The watcher proc
 
 lms-static: ## Rebuild static assets for the LMS container
 	docker exec -t edx.devstack.lms bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver update_assets'
+
+watch-themes: ## Recompile css/js file from the themes
+	docker exec -t edx.devstack.lms bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver watch_assets'
 
 studio-static: ## Rebuild static assets for the Studio container
 	docker exec -t edx.devstack.studio bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver update_assets'

@@ -136,7 +136,7 @@ services:
       - "18130:18130"
 
   lms:
-    command: bash -c 'source /edx/app/edxapp/edxapp_env && while true; do python /edx/app/edxapp/edx-platform/manage.py lms runserver 0.0.0.0:18000 --settings devstack_docker; sleep 2; done'
+    command: bash -c 'cp /edx/app/tmp/* /edx/app/edxapp/ && source /edx/app/edxapp/edxapp_env && while true; do python /edx/app/edxapp/edx-platform/manage.py lms runserver 0.0.0.0:18000 --settings devstack_docker; sleep 2; done'
     container_name: edx.devstack.lms
     hostname: lms.devstack.edx
     depends_on:
@@ -161,6 +161,8 @@ services:
       # - "18031:18031"
     volumes:
       - edxapp_lms_assets:/edx/var/edxapp/staticfiles/
+      - ${DEVSTACK_WORKSPACE}/edx-platform/themes:/edx/app/edxapp/edx-platform/themes
+      - ${DEVSTACK_WORKSPACE}/edxapp:/edx/app/tmp/
 
   edx_notes_api:
     command: bash -c 'source /edx/app/edx_notes_api/edx_notes_api_env && while true; do python /edx/app/edx_notes_api/edx_notes_api/manage.py runserver 0.0.0.0:18120 --settings notesserver.settings.devstack; sleep 2; done'
