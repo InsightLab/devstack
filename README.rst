@@ -85,6 +85,14 @@ a minimum of 2 CPUs and 6GB of memory works well.
 
        export OPENEDX_RELEASE=ironwood.master
        export DEVSTACK_WORKSPACE=<devstack-folder-directory>
+       export CUSTOM_DATA_FOLDER=<data-folder>
+
+       # 'Data folder' is the name of a directory (placed in $DEVSTACK_WORKSPACE)
+       # with two subdirectories: 'edxapp' and 'themes', in
+       # which the first must contain the 'lms.env.json',
+       # 'lms.auth.json', 'cms.env.json' and 'cms.auth.json'
+       # files, and the second must contain the
+       # themes of platform created following the documentation.
 
 2. Create development environment with Conda.
 
