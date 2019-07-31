@@ -217,7 +217,7 @@ lms-static: ## Rebuild static assets for the LMS container
 	docker exec -t edx.devstack.lms bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver update_assets'
 
 watch-themes: ## Recompile css/js file from the themes
-	docker exec -t edx.devstack.lms bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver watch_assets --theme-dirs=/edx/app/edxapp/edx-platform/themes --themes="edx-theme"'
+	docker exec -t edx.devstack.lms bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver watch_assets --theme-dirs=/edx/app/edxapp/edx-platform/themes --themes="edx-theme" --settings=devstack_docker'
 
 studio-static: ## Rebuild static assets for the Studio container
 	docker exec -t edx.devstack.studio bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform/ && paver update_assets'

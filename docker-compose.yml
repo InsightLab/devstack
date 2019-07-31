@@ -136,7 +136,7 @@ services:
       - "18130:18130"
 
   lms:
-    command: bash -c 'cp /edx/app/tmp/* /edx/app/edxapp/ && cp /edx/app/auth/* /edx/app/edxapp/edx-platform/common/djangoapps/third_party_auth/ && source /edx/app/edxapp/edxapp_env && while true; do python /edx/app/edxapp/edx-platform/manage.py lms runserver 0.0.0.0:18000 --settings devstack_docker; sleep 2; done'
+    command: bash -c 'cp /edx/app/tmp/* /edx/app/edxapp/ && ln -s /edx/app/edxapp/edx-platform/themes/edx-theme/lms/static/sass /edx/app/edxapp/edx-platform/lms/static && cp /edx/app/auth/* /edx/app/edxapp/edx-platform/common/djangoapps/third_party_auth/ && source /edx/app/edxapp/edxapp_env && while true; do python /edx/app/edxapp/edx-platform/manage.py lms runserver 0.0.0.0:18000 --settings devstack_docker; sleep 2; done'
     container_name: edx.devstack.lms
     hostname: lms.devstack.edx
     depends_on:
